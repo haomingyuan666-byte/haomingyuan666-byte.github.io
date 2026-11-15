@@ -134,6 +134,18 @@
   .guide-card li b{color:var(--ink);font-weight:600}
   .guide-card .btn{display:block;text-align:center}
   .guide-card .hook{color:var(--mut);font-size:16px;margin-top:10px}
+  .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .shop-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px 26px 24px;display:flex;flex-direction:column}
+  .shop-card.featured{border-color:rgba(255,180,84,.5)}
+  .shop-card .p{font-family:'Space Grotesk';font-size:40px;font-weight:700}
+  .shop-card .p small{font-size:14px;color:var(--mut);font-family:'Inter';font-weight:500}
+  .shop-card .hook{color:var(--mut);font-size:15px;margin-top:8px}
+  .shop-card ul{list-style:none;margin:16px 0 20px;padding:0}
+  .shop-card li{padding:6px 0 6px 26px;position:relative;color:var(--mut);font-size:14.5px}
+  .shop-card li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+  .shop-card li b{color:var(--ink);font-weight:600}
+  .shop-card .btn{margin-top:auto;text-align:center}
+  @media(max-width:920px){.shop-grid{grid-template-columns:1fr}}
 
   /* faq */
   .faq{max-width:760px}
@@ -159,8 +171,7 @@
     <div class="nav-links">
       <a href="#film">The Film</a>
       <a href="#contents">Contents</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#more">More guides</a>
+      <a href="#shop">Shop</a>
       <a href="#faq">FAQ</a>
       <a class="btn small" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Get the Playbook — $24</a>
     </div>
@@ -285,60 +296,53 @@
   </div>
 </section>
 
-<section class="pricing" id="pricing">
+<section class="pricing" id="shop">
   <div class="wrap">
-    <div class="price-card">
-      <div class="kicker">Pricing</div>
-      <div class="p">$24 <small>USD · one-time payment</small></div>
-      <ul>
-        <li><b>Playbook PDF</b> — 18 pages, 6 chapters + 2 appendices</li>
-        <li><b>Prompt Pack</b> — 8 templates, PDF + TXT</li>
-        <li><b>The full case study</b> — the real shot board behind the film above</li>
-        <li><b>Instant download</b> — delivered by Creem right after payment</li>
-        <li><b>Single-user license</b> — use it for personal and commercial creative projects</li>
-      </ul>
-      <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Get instant access</a>
-      <p class="guarantee">If the files can't be downloaded or are technically defective, email us within 14 days — we fix the delivery or refund you in full.</p>
-      <p class="alt-buy">Just want the templates? <a href="https://www.creem.io/product/prod_6ztDgfFOknyuvSxs7vQGsj">AI Video Prompt Pack — $9</a><br>Templates only — no tutorial. Already own the Playbook? You already have them.</p>
+    <div class="kicker" style="text-align:center">The Store</div>
+    <h2 class="sec-h" style="text-align:center">Three products. Straight prices, instant download.</h2>
+    <div style="height:20px"></div>
+    <div class="shop-grid">
+      <div class="shop-card featured">
+        <div class="kicker">AI Video Production Playbook</div>
+        <div class="p">$24 <small>USD · one-time</small></div>
+        <p class="hook">The complete system: the step-by-step tutorial plus the full prompt pack, built around a real 55-second film.</p>
+        <ul>
+          <li><b>Playbook PDF</b> — 18 pages, 6 chapters + 2 appendices</li>
+          <li><b>Prompt Pack included</b> — all 8 templates, PDF + TXT</li>
+          <li><b>Full case study</b> — the real shot board behind the film</li>
+        </ul>
+        <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Get the Playbook</a>
+        <p class="guarantee">Best value if you want the whole workflow.</p>
+      </div>
+      <div class="shop-card">
+        <div class="kicker">AI Video Prompt Pack</div>
+        <div class="p">$9 <small>USD · one-time</small></div>
+        <p class="hook">Just the templates — all 8 of them, ready to copy-paste into your own workflow.</p>
+        <ul>
+          <li><b>5 core templates</b> — script, storyboard, character sheet, shot prompt, consistency fix</li>
+          <li><b>3 bonus templates</b> — narration, camera vocabulary, negative prompts</li>
+          <li><b>PDF + plain-text TXT</b> — read, then paste</li>
+        </ul>
+        <a class="btn" href="https://www.creem.io/product/prod_6ztDgfFOknyuvSxs7vQGsj">Get the Prompt Pack</a>
+        <p class="guarantee">Templates only. Already own the Playbook? You already have these.</p>
+      </div>
+      <div class="shop-card">
+        <div class="kicker">1688 Sourcing Field Guide</div>
+        <div class="p">$19 <small>USD · one-time</small></div>
+        <p class="hook">How 1688 prices really work — and how to find the true ones before you pay for samples.</p>
+        <ul>
+          <li><b>The five prices</b> on every listing — only one belongs in your math</li>
+          <li><b>Real case file</b> — 15 listings screened, true band ¥100–153</li>
+          <li><b>7 inquiry templates</b> in Chinese, with translations</li>
+        </ul>
+        <a class="btn" href="https://www.creem.io/product/prod_7CuYU5mcz5ywyO2rtWuAlC">Get the Field Guide</a>
+        <p class="guarantee">Research method only — not a purchasing agency.</p>
+      </div>
     </div>
+    <p class="guarantee" style="margin-top:22px">Every product: instant download delivered by Creem after payment · Single-user license · 14-day refund if the files can't be downloaded or are technically defective.</p>
   </div>
 </section>
 
-<section id="more">
-  <div class="wrap">
-    <div class="kicker" style="text-align:center">Also from Hao Studio</div>
-    <h2 class="sec-h" style="text-align:center">Guides &amp; template packs</h2>
-    <div style="height:18px"></div>
-    <div class="guide-card">
-      <div class="kicker">1688 Sourcing Field Guide</div>
-      <div class="p">$19 <small>USD · one-time payment</small></div>
-      <p class="hook">A 1688 listing shows ¥29.80 (~$4.50) for a product that retails at $25–50 in the US. That price is bait. This guide shows you how the platform's prices really work — and how to find the true ones.</p>
-      <ul>
-        <li><b>The five prices</b> on every listing — and the only one that belongs in your math</li>
-        <li><b>A complete real case file</b> — 15 listings screened, 9 suppliers questioned, true band ¥100–153, confirmed quotes ¥106–108</li>
-        <li><b>Red flags you can judge from chat alone</b> — before you pay for samples</li>
-        <li><b>7 copy-paste inquiry templates</b> in Chinese, with English translations</li>
-        <li><b>Instant download</b> — 14-page PDF + templates, delivered by Creem</li>
-      </ul>
-      <a class="btn" href="https://www.creem.io/product/prod_7CuYU5mcz5ywyO2rtWuAlC">Get the Field Guide</a>
-      <p class="guarantee">Research method only — not a purchasing agency. If the files can't be downloaded or are technically defective, email us within 14 days for a fix or a full refund.</p>
-    </div>
-    <div style="height:26px"></div>
-    <div class="guide-card">
-      <div class="kicker">AI Video Prompt Pack</div>
-      <div class="p">$9 <small>USD · one-time payment</small></div>
-      <p class="hook">Just the templates — all 8 of them. The exact prompt templates behind The Last Lighthouse, the 55-second film at the top of this page: 12 shots, zero wasted generations.</p>
-      <ul>
-        <li><b>5 core templates</b> — script, storyboard, character sheet, shot prompt, consistency fix</li>
-        <li><b>3 bonus templates</b> — narration script, camera-movement vocabulary, negative prompts</li>
-        <li><b>PDF + plain-text TXT</b> — read them, then copy-paste straight into your workflow</li>
-        <li><b>Instant download</b> — delivered by Creem right after payment</li>
-      </ul>
-      <a class="btn" href="https://www.creem.io/product/prod_6ztDgfFOknyuvSxs7vQGsj">Get the Prompt Pack</a>
-      <p class="guarantee">Templates only — the full tutorial is the Playbook above. Already own the Playbook? You already have these — please don't buy twice. 14-day refund if the files are technically defective.</p>
-    </div>
-  </div>
-</section>
 
 <section id="faq">
   <div class="wrap faq">
