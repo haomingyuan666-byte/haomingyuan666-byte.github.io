@@ -3,67 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hao Studio — AI Video Production Playbook</title>
+<title>AI Video Production Playbook — Hao Studio</title>
+<meta name="description" content="A step-by-step playbook + prompt pack for making consistent, story-driven AI short films without burning money on redraws. Includes a real 12-shot film made with the workflow.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗼</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;margin:0;background:#0f1115;color:#e8e9eb;line-height:1.65}
-  .wrap{max-width:760px;margin:0 auto;padding:48px 22px 64px}
-  h1{font-size:32px;line-height:1.25;margin:6px 0 10px}
-  h2{font-size:20px;margin:36px 0 10px;color:#ffb59e}
-  .brand{letter-spacing:2px;font-size:13px;color:#9aa3af;text-transform:uppercase}
-  .sub{color:#b7bdc7;font-size:17px}
-  .card{background:#171a20;border:1px solid #262b34;border-radius:14px;padding:20px 22px;margin:22px 0}
-  .price{font-size:26px;font-weight:700}
-  ul{padding-left:20px;margin:8px 0}
-  li{margin:4px 0}
-  a{color:#8ab4ff}
-  .muted{color:#9aa3af;font-size:14px}
-  .btn{display:inline-block;background:#ff5c33;color:#fff;padding:12px 26px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:10px}
-  footer{margin-top:48px;border-top:1px solid #262b34;padding-top:18px;color:#9aa3af;font-size:14px}
+  :root{
+    --bg:#0a0f14; --bg2:#0e151c; --panel:#111a22; --panel2:#152029;
+    --line:#22303d; --ink:#eef2f5; --mut:#9fb0bd; --mut2:#7d8fa0;
+    --amber:#ffb454; --amber2:#ff8a3d; --teal:#39d0c4;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amber)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(10,15,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:'Space Grotesk';font-weight:700;letter-spacing:2.5px;font-size:14px;text-transform:uppercase;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--amber)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{color:var(--mut);text-decoration:none;font-size:14.5px;font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--amber),var(--amber2));color:#1a1206;padding:12px 26px;border-radius:11px;text-decoration:none;font-weight:600;font-size:15.5px;box-shadow:0 6px 24px rgba(255,150,50,.28);transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(255,150,50,.36)}
+  .btn.small{padding:9px 18px;font-size:14px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+  .btn.ghost:hover{border-color:var(--mut2)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:
+    radial-gradient(900px 480px at 85% -10%,rgba(57,208,196,.13),transparent 60%),
+    radial-gradient(800px 500px at 8% 0%,rgba(255,180,84,.12),transparent 55%),
+    linear-gradient(180deg,#0c141b,#0a0f14)}
+  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:22px 22px;pointer-events:none}
+  .hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;padding:72px 0 84px;align-items:center}
+  @media(max-width:880px){.hero-in{grid-template-columns:1fr;padding:52px 0 64px}}
+  .badge{display:inline-block;border:1px solid rgba(255,180,84,.45);color:var(--amber);border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;background:rgba(255,180,84,.07)}
+  .hero h1{font-size:clamp(34px,4.6vw,54px);font-weight:700;margin:20px 0 16px}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero .sub{color:var(--mut);font-size:17.5px;max-width:54ch;margin:0 0 26px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .price-tag{font-family:'Space Grotesk';font-size:30px;font-weight:700}
+  .price-tag small{font-size:14px;color:var(--mut);font-family:'Inter';font-weight:500}
+  .trust{color:var(--mut2);font-size:13.5px;margin-top:16px}
+  .trust b{color:var(--mut);font-weight:600}
+
+  /* phone frame */
+  .phone-col{display:flex;justify-content:center}
+  .phone{width:270px;max-width:78vw;aspect-ratio:9/19.2;background:#05080b;border:1px solid #2b3a47;border-radius:38px;padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 6px #0d141a}
+  .phone .screen{border-radius:29px;overflow:hidden;height:100%;background:#000}
+  .phone iframe{width:100%;height:100%;border:0;display:block}
+  .phone-cap{text-align:center;color:var(--mut2);font-size:13px;margin-top:14px}
+  .phone-cap a{color:var(--mut)}
+
+  /* stats */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+  .stats-in{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:26px 0}
+  @media(max-width:760px){.stats-in{grid-template-columns:repeat(2,1fr)}}
+  .stat{text-align:center;padding:6px}
+  .stat .n{font-family:'Space Grotesk';font-size:30px;font-weight:700;color:var(--amber)}
+  .stat .l{color:var(--mut);font-size:13.5px;margin-top:2px}
+
+  section{padding:72px 0}
+  .kicker{color:var(--teal);font-size:12.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+  .sec-h{font-size:clamp(26px,3.4vw,36px);font-weight:700;margin:10px 0 12px}
+  .sec-sub{color:var(--mut);max-width:66ch;margin:0 0 34px;font-size:16.5px}
+
+  /* chapter cards */
+  .chapters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.chapters{grid-template-columns:1fr}}
+  details.ch{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden}
+  details.ch summary{cursor:pointer;list-style:none;padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary:hover{background:var(--panel2)}
+  .ch .num{font-family:'Space Grotesk';font-weight:700;color:var(--amber);background:rgba(255,180,84,.1);border:1px solid rgba(255,180,84,.35);border-radius:9px;padding:2px 9px;font-size:13.5px;white-space:nowrap;margin-top:2px}
+  .ch .t{font-weight:600;font-size:16px}
+  .ch .d{color:var(--mut);font-size:14.5px;padding:0 20px 18px 20px;margin:0}
+  .ch .chev{margin-left:auto;color:var(--mut2);transition:transform .2s}
+  details.ch[open ] .chev{transform:rotate(180deg)}
+  .appendix{margin-top:14px;background:linear-gradient(135deg,rgba(57,208,196,.08),rgba(255,180,84,.06));border:1px dashed #2c4250;border-radius:var(--radius);padding:18px 20px;color:var(--mut);font-size:15px}
+  .appendix b{color:var(--ink)}
+
+  /* inside the download */
+  .inside{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.inside{grid-template-columns:1fr}}
+  .file-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .file-card .ic{font-size:26px}
+  .file-card h3{font-size:19px;margin:10px 0 6px}
+  .file-card p{color:var(--mut);font-size:15px;margin:0}
+  .file-card .meta{margin-top:12px;color:var(--mut2);font-size:13px}
+
+  /* for / not for */
+  .fit{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.fit{grid-template-columns:1fr}}
+  .fit-card{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--panel)}
+  .fit-card.yes{border-color:rgba(57,208,196,.4)}
+  .fit-card h3{font-size:17px;margin:0 0 12px}
+  .fit-card ul{margin:0;padding-left:19px;color:var(--mut);font-size:15px}
+  .fit-card li{margin:6px 0}
+
+  /* pricing */
+  .pricing{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .price-card{max-width:560px;margin:0 auto;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid rgba(255,180,84,.4);border-radius:20px;padding:34px 34px 30px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .price-card .p{font-family:'Space Grotesk';font-size:46px;font-weight:700}
+  .price-card .p small{font-size:15px;color:var(--mut);font-family:'Inter';font-weight:500}
+  .price-card ul{list-style:none;margin:20px 0 24px;padding:0}
+  .price-card li{padding:7px 0 7px 28px;position:relative;color:var(--mut);font-size:15.5px}
+  .price-card li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+  .price-card li b{color:var(--ink);font-weight:600}
+  .price-card .btn{display:block;text-align:center}
+  .guarantee{color:var(--mut2);font-size:13.5px;text-align:center;margin-top:16px}
+
+  /* faq */
+  .faq{max-width:760px}
+  details.qa{border-bottom:1px solid var(--line)}
+  details.qa summary{cursor:pointer;list-style:none;padding:17px 4px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:12px}
+  details.qa summary::-webkit-details-marker{display:none}
+  details.qa p{color:var(--mut);margin:0 0 18px;padding:0 4px;font-size:15px;max-width:64ch}
+
+  /* about + footer */
+  .about{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .about p{color:var(--mut);margin:0;font-size:15.5px;max-width:78ch}
+  .about b{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--mut2);font-size:13.5px}
+  footer .cols{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer a{color:var(--mut)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">Hao Studio</div>
-  <h1>AI Video Production Playbook</h1>
-  <p class="sub">A step-by-step tutorial (PDF) plus a prompt template pack that shows how to turn one idea into a finished AI video — with checks at the cheap text and image stages, so you spend as little as possible on video generation redraws.</p>
 
-  <div class="card">
-    <div class="price">USD 24 <span class="muted">· one-time payment · instant download</span></div>
-    <p class="muted">Sold and delivered digitally via our payment provider. After payment you receive an instant download of the PDF tutorial and the prompt pack. No physical goods, no subscription.</p>
-    <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Buy the Playbook</a>
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#">Hao <span>Studio</span></a>
+    <div class="nav-links">
+      <a href="#film">The Film</a>
+      <a href="#contents">Contents</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn small" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Get the Playbook — $24</a>
+    </div>
   </div>
+</nav>
 
-  <h2>What's inside</h2>
-  <ul>
-    <li>Chapter 1 — Tools and cost control: the multi-model workflow and where to check before you spend</li>
-    <li>Chapter 2 — Idea to script: turning one idea into a story outline and scene-by-scene script</li>
-    <li>Chapter 3 — Storyboarding: how to write a shot list that generation tools can actually follow</li>
-    <li>Chapter 4 — Character &amp; scene reference images: keeping the same character across shots</li>
-    <li>Chapter 5 — Video generation: shot-by-shot generation and redraw budget control</li>
-    <li>Chapter 6 — Editing and export: assembly, subtitles, loudness and export settings</li>
-    <li>Appendix A — Prompt template pack (script, storyboard, character, shot, consistency fix)</li>
-    <li>Appendix B — Pitfall checklist: the 10 most common failure causes and fixes</li>
-  </ul>
+<header class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <span class="badge">AI Video Production Playbook</span>
+      <h1>Make AI films that <em>hold together</em> — same characters, real story, no redraw spiral.</h1>
+      <p class="sub">A step-by-step tutorial (PDF) plus a prompt template pack: turn one idea into a finished AI short film, with checks at the cheap text and image stages — so you stop paying for endless video redraws.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Buy the Playbook</a>
+        <span class="price-tag">$24 <small>one-time · instant download</small></span>
+      </div>
+      <p class="trust"><b>Instant delivery</b> after payment · PDF + prompt pack · <b>14-day refund</b> if the files are technically defective · Secure checkout by Creem</p>
+    </div>
+    <div class="phone-col" id="film">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <iframe src="https://www.youtube.com/embed/mT4rlyXJbD8" title="The Last Lighthouse — AI short film made with this playbook" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="phone-cap">▲ <i>The Last Lighthouse</i> (55s) — produced end-to-end with exactly this workflow.<br><a href="https://youtube.com/shorts/mT4rlyXJbD8">Watch on YouTube</a> · <a href="https://x.com/lcberg66/status/2121867556634190144">See it on X</a></p>
+      </div>
+    </div>
+  </div>
+</header>
 
-  <h2>Who this is for</h2>
-  <p>Beginners and intermediate creators who want to make short AI story videos without burning money on endless redraws. The playbook is an original tutorial based on publicly available methods and hands-on practice.</p>
-
-  <h2>About Hao Studio</h2>
-  <p>Hao Studio is a one-person independent studio based in China, run by Hao Mingyuan. I create practical tutorials and templates about AI-assisted video production, and share demos and updates on X (<a href="https://x.com/Icberg66">@Icberg66</a>) and YouTube (<a href="https://youtube.com/@Hao1-w7c">@Hao1-w7c</a>). I create the products, deliver them, and handle customer support myself.</p>
-
-  <h2>Support</h2>
-  <p>Questions about your order or the files? Email <a href="mailto:haomingyuan666@gmail.com">haomingyuan666@gmail.com</a> and I will reply within 2 business days.</p>
-
-  <h2>Refund policy</h2>
-  <p>This is a digital download product. If the files cannot be downloaded or are technically defective, contact support within 14 days of purchase and I will fix the delivery or refund you in full. Because the content is delivered instantly and can be kept, completed downloads of working files are generally not refundable unless required by law.</p>
-
-  <h2>Terms</h2>
-  <p>Your purchase is a single-user license for personal and commercial creative projects. You may not resell, redistribute, or share the tutorial files or the prompt pack themselves. Prices are in USD and charged by our payment provider as merchant of record, which handles applicable taxes.</p>
-
-  <footer>
-    Hao Studio · Independent creator, China · Support: haomingyuan666@gmail.com<br>
-    This site sells digital tutorial products only. No accounts, memberships of third-party services, or logins of any kind are sold here.
-  </footer>
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><div class="n">12</div><div class="l">shots in the demo film</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">wasted generations</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">characters, consistent in every shot</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">ready-to-use prompt templates</div></div>
+  </div>
 </div>
+
+<section id="contents">
+  <div class="wrap">
+    <div class="kicker">What's inside</div>
+    <h2 class="sec-h">Six chapters, each ending with a gate check</h2>
+    <p class="sec-sub">Every chapter closes with a pass/fail checklist. You only move on — and only start spending on video generation — when the cheap stage is provably right. The worked example throughout is the film above, <i>The Last Lighthouse</i>, with its real shot board filled in.</p>
+    <div class="chapters">
+      <details class="ch" open>
+        <summary><span class="num">CH 1</span><span class="t">Tools &amp; cost control</span><span class="chev">▾</span></summary>
+        <p class="d">The multi-model workflow (text → image → video), what each stage should cost, and where to check before you spend anything on generation.</p>
+      </details>
+      <details class="ch">
+        <summary><span class="num">CH 2</span><span class="t">Idea to script</span><span class="chev">▾</span></summary>
+        <p class="d">Turning one sentence of an idea into a story outline and a scene-by-scene script that a generation tool can actually follow.</p>
+      </details>
+      <details class="ch">
+        <summary><span class="num">CH 3</span><span class="t">Storyboarding</span><span class="chev">▾</span></summary>
+        <p class="d">Writing a shot list with framing, action and duration per shot — the document that keeps a 12-shot film coherent instead of random.</p>
+      </details>
+      <details class="ch">
+        <summary><span class="num">CH 4</span><span class="t">Character &amp; scene consistency</span><span class="chev">▾</span></summary>
+        <p class="d">Reference sheets, fixed character anchors and style anchors: how the same keeper and the same daughter appear in all 12 shots of the demo film.</p>
+      </details>
+      <details class="ch">
+        <summary><span class="num">CH 5</span><span class="t">Video generation &amp; the 3-attempt rule</span><span class="chev">▾</span></summary>
+        <p class="d">Keyframes first, hardest shot first, and a hard budget of 3 attempts per shot — the rule that kept the demo film at zero wasted generations.</p>
+      </details>
+      <details class="ch">
+        <summary><span class="num">CH 6</span><span class="t">Editing &amp; export</span><span class="chev">▾</span></summary>
+        <p class="d">Assembly, trims, subtitles, loudness (−14 LUFS) and the export settings for Shorts, TikTok and Reels.</p>
+      </details>
+    </div>
+    <div class="appendix"><b>Plus two appendices:</b> Appendix A collects all 8 prompt templates in one place. Appendix B is the pitfall checklist — the 10 most common failure causes (face drift, costume changes, runaway redraws…) and the exact fix for each.</div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">The download</div>
+    <h2 class="sec-h">What you get, immediately</h2>
+    <p class="sec-sub">One ZIP, delivered right after checkout. No account to create, nothing else to buy from us.</p>
+    <div class="inside">
+      <div class="file-card">
+        <div class="ic">📖</div>
+        <h3>AI Video Production Playbook</h3>
+        <p>The full tutorial: 6 chapters with gate checks, the complete <i>Last Lighthouse</i> case study, and both appendices.</p>
+        <div class="meta">PDF · 18 pages · English</div>
+      </div>
+      <div class="file-card">
+        <div class="ic">🧩</div>
+        <h3>Prompt Pack</h3>
+        <p>8 copy-paste templates: script, storyboard, character sheet, shot prompts, consistency fix — plus narration, camera-movement vocabulary and negative prompts.</p>
+        <div class="meta">PDF (4 pages) + plain-text .txt version</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Honest fit check</div>
+    <h2 class="sec-h">Who this is for — and who it isn't</h2>
+    <p class="sec-sub">We'd rather lose a sale than sell you the wrong thing.</p>
+    <div class="fit">
+      <div class="fit-card yes">
+        <h3>✅ This is for you if…</h3>
+        <ul>
+          <li>You make (or want to make) short AI story videos, roughly 30–90 seconds</li>
+          <li>Your characters keep changing face/costume between shots</li>
+          <li>You're burning credits on redraw after redraw with no system</li>
+          <li>You want a repeatable process, not a pile of random prompts</li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <h3>🚫 It's not for you if…</h3>
+        <ul>
+          <li>You want a done-for-you video — this teaches you to make your own</li>
+          <li>You need long-form or live-action workflows</li>
+          <li>You expect the tools themselves to be included — generation tools and their credits are separate, and the playbook says so plainly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="price-card">
+      <div class="kicker">Pricing</div>
+      <div class="p">$24 <small>USD · one-time payment</small></div>
+      <ul>
+        <li><b>Playbook PDF</b> — 18 pages, 6 chapters + 2 appendices</li>
+        <li><b>Prompt Pack</b> — 8 templates, PDF + TXT</li>
+        <li><b>The full case study</b> — the real shot board behind the film above</li>
+        <li><b>Instant download</b> — delivered by Creem right after payment</li>
+        <li><b>Single-user license</b> — use it for personal and commercial creative projects</li>
+      </ul>
+      <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Get instant access</a>
+      <p class="guarantee">If the files can't be downloaded or are technically defective, email us within 14 days — we fix the delivery or refund you in full.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <div class="kicker">FAQ</div>
+    <h2 class="sec-h">Questions, answered straight</h2>
+    <div style="height:14px"></div>
+    <details class="qa">
+      <summary>How do I receive the files?<span>＋</span></summary>
+      <p>Checkout is handled by Creem (our payment provider). Right after payment you get an instant download of one ZIP containing the Playbook PDF and the Prompt Pack (PDF + TXT). No physical goods, no subscription.</p>
+    </details>
+    <details class="qa">
+      <summary>Which AI tools do I need?<span>＋</span></summary>
+      <p>Any current image and video generation tools you already use — the workflow is tool-agnostic and Chapter 1 explains how to assign each stage. Tool subscriptions/credits are not included and are never sold here.</p>
+    </details>
+    <details class="qa">
+      <summary>I'm a complete beginner. Is this over my head?<span>＋</span></summary>
+      <p>No — it was written for beginners and intermediate creators. It assumes you can open a generation tool and type a prompt; everything beyond that is taught step by step, with the demo film as the worked example.</p>
+    </details>
+    <details class="qa">
+      <summary>What is the refund policy?<span>＋</span></summary>
+      <p>If the files cannot be downloaded or are technically defective, contact support within 14 days of purchase and we will fix the delivery or refund you in full. Because the content is delivered instantly and can be kept, completed downloads of working files are generally not refundable unless required by law.</p>
+    </details>
+    <details class="qa">
+      <summary>Can I use this for client or commercial work?<span>＋</span></summary>
+      <p>Yes — your license covers personal and commercial creative projects. What you may not do is resell, redistribute or share the tutorial files or the prompt pack themselves.</p>
+    </details>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="about">
+      <div class="kicker">About</div>
+      <h2 class="sec-h" style="font-size:24px">Hao Studio</h2>
+      <p><b>Hao Studio</b> is a one-person independent studio based in China, run by <b>Hao Mingyuan</b>. I make practical tutorials and templates for AI-assisted video production — and I test every workflow on a real film before I sell it. The demo above is mine, made with this exact playbook. Follow along on X (<a href="https://x.com/lcberg66">@lcberg66</a>) and YouTube (<a href="https://youtube.com/@Hao1-w7c">@Hao1-w7c</a>). Questions about an order or the files? Email <a href="mailto:haomingyuan666@gmail.com">haomingyuan666@gmail.com</a> — I reply within 2 business days, personally.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap cols">
+    <div>© 2026 Hao Studio · Independent creator, China · Support: <a href="mailto:haomingyuan666@gmail.com">haomingyuan666@gmail.com</a></div>
+    <div>This site sells digital tutorial products only. No accounts, memberships of third-party services, or logins of any kind are sold here.</div>
+  </div>
+</footer>
+
 </body>
 </html>
