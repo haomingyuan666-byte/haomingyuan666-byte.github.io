@@ -134,6 +134,29 @@
   .guide-card li b{color:var(--ink);font-weight:600}
   .guide-card .btn{display:block;text-align:center}
   .guide-card .hook{color:var(--mut);font-size:16px;margin-top:10px}
+  .hero{position:relative}
+  .slide{display:none}
+  .slide.active{display:block;animation:fadein .45s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .car-btn{position:absolute;top:46%;transform:translateY(-50%);z-index:6;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(10,14,20,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+  .car-btn:hover{border-color:var(--amber);color:var(--amber)}
+  .car-btn.prev{left:14px}
+  .car-btn.next{right:14px}
+  .car-dots{display:flex;gap:9px;justify-content:center;padding:4px 0 28px}
+  .car-dots button{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.25);cursor:pointer;padding:0}
+  .car-dots button.on{background:var(--amber)}
+  @media(max-width:760px){.car-btn{width:38px;height:38px;font-size:19px}.car-btn.prev{left:6px}.car-btn.next{right:6px}}
+  .doc{background:#f7f3ea;color:#1c2330;border-radius:14px;padding:22px 22px 16px;box-shadow:0 24px 60px rgba(0,0,0,.45);transform:rotate(-1.2deg);max-width:430px;margin:0 auto;text-align:left}
+  .doc h4{margin:0 0 4px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#8a6d1f}
+  .doc .dt{font-family:'Space Grotesk';font-size:20px;font-weight:700;margin-bottom:10px}
+  .doc table{width:100%;border-collapse:collapse;font-size:13px}
+  .doc th,.doc td{border-bottom:1px solid #ddd3bd;padding:6px 4px;text-align:left;vertical-align:top}
+  .doc th{font-weight:600;white-space:nowrap}
+  .doc .ok{color:#0d7a5f;font-weight:700}
+  .doc .bad{color:#b3382c;font-weight:600}
+  .doc .field{border:1.5px dashed #b9a86f;border-radius:8px;padding:8px 10px;font-size:13.5px;margin:8px 0;background:#fffdf6}
+  .doc .fl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8a6d1f;font-weight:700}
+  .doc .doc-note{font-size:12.5px;color:#6b7280;margin:10px 0 2px}
   .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   .shop-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px 26px 24px;display:flex;flex-direction:column}
   .shop-card.featured{border-color:rgba(255,180,84,.5)}
@@ -178,28 +201,99 @@
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap hero-in">
-    <div>
-      <span class="badge">AI Video Production Playbook</span>
-      <h1>Make AI films that <em>hold together</em> — same characters, real story, no redraw spiral.</h1>
-      <p class="sub">A step-by-step tutorial (PDF) plus a prompt template pack: turn one idea into a finished AI short film, with checks at the cheap text and image stages — so you stop paying for endless video redraws.</p>
-      <div class="cta-row">
-        <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Buy the Playbook</a>
-        <span class="price-tag">$24 <small>one-time · instant download</small></span>
-      </div>
-      <p class="trust"><b>Instant delivery</b> after payment · PDF + prompt pack · <b>14-day refund</b> if the files are technically defective · Secure checkout by Creem</p>
-    </div>
-    <div class="phone-col" id="film">
+<header class="hero" id="film">
+  <button class="car-btn prev" aria-label="Previous product">&#8249;</button>
+  <button class="car-btn next" aria-label="Next product">&#8250;</button>
+
+  <div class="slide active">
+    <div class="wrap hero-in">
       <div>
-        <div class="phone">
-          <div class="screen">
-            <iframe src="https://www.youtube.com/embed/mT4rlyXJbD8" title="The Last Lighthouse — AI short film made with this playbook" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-          </div>
+        <span class="badge">AI Video Production Playbook</span>
+        <h1>Make AI films that <em>hold together</em> — same characters, real story, no redraw spiral.</h1>
+        <p class="sub">A step-by-step tutorial (PDF) plus a prompt template pack: turn one idea into a finished AI short film, with checks at the cheap text and image stages — so you stop paying for endless video redraws.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">Buy the Playbook</a>
+          <span class="price-tag">$24 <small>one-time · instant download</small></span>
         </div>
-        <p class="phone-cap">▲ <i>The Last Lighthouse</i> (55s) — produced end-to-end with exactly this workflow.<br><a href="https://youtube.com/shorts/mT4rlyXJbD8">Watch on YouTube</a> · <a href="https://x.com/lcberg66/status/2121867556634190144">See it on X</a></p>
+        <p class="trust"><b>Instant delivery</b> after payment · PDF + prompt pack · <b>14-day refund</b> if the files are technically defective · Secure checkout by Creem</p>
+      </div>
+      <div class="phone-col">
+        <div>
+          <div class="phone">
+            <div class="screen">
+              <iframe src="https://www.youtube.com/embed/mT4rlyXJbD8" title="The Last Lighthouse — AI short film made with this playbook" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <p class="phone-cap">▲ <i>The Last Lighthouse</i> (55s) — produced end-to-end with exactly this workflow.<br><a href="https://youtube.com/shorts/mT4rlyXJbD8">Watch on YouTube</a> · <a href="https://x.com/lcberg66/status/2121867556634190144">See it on X</a></p>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap hero-in">
+      <div>
+        <span class="badge">AI Video Prompt Pack</span>
+        <h1>The 8 templates behind a film with <em>zero redraws</em>.</h1>
+        <p class="sub">Just the prompts: script, storyboard, character sheet, shot prompt and the consistency fix — plus narration, camera-movement and negative-prompt bonuses. The exact templates used to finish a 55-second film in 12 shots.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://www.creem.io/product/prod_6ztDgfFOknyuvSxs7vQGsj">Buy the Prompt Pack</a>
+          <span class="price-tag">$9 <small>one-time · instant download</small></span>
+        </div>
+        <p class="trust"><b>Instant delivery</b> after payment · PDF + copy-paste TXT · Templates only — no tutorial · <b>14-day refund</b> if the files are technically defective</p>
+      </div>
+      <div class="phone-col">
+        <div>
+          <div class="doc">
+            <h4>Template 03 · Character Sheet</h4>
+            <div class="dt">Lock the character before you generate</div>
+            <div class="field"><span class="fl">Face anchors</span><br>Weathered skin, deep-set eyes, grey-streaked beard</div>
+            <div class="field"><span class="fl">Costume anchors</span><br>Mustard oilskin jacket, wool watch cap, brass lamp key on a cord</div>
+            <div class="field"><span class="fl">Never change</span><br>Age, face shape, jacket colour — in any shot, any weather</div>
+            <p class="doc-note">Shown filled in with the keeper from The Last Lighthouse — 1 of 8 templates in the pack.</p>
+          </div>
+          <p class="phone-cap">▲ Inside the pack: the character-sheet template that kept the same man in all 12 shots.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap hero-in">
+      <div>
+        <span class="badge">1688 Sourcing Field Guide</span>
+        <h1>1688's cheapest price is <em>bait</em>. Find the real one.</h1>
+        <p class="sub">How the platform's prices actually work — the five prices on every listing, the red flags you can judge from chat alone, and a complete real investigation: 15 listings screened, 9 suppliers questioned in Chinese, every quote logged.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://www.creem.io/product/prod_7CuYU5mcz5ywyO2rtWuAlC">Buy the Field Guide</a>
+          <span class="price-tag">$19 <small>one-time · instant download</small></span>
+        </div>
+        <p class="trust"><b>Instant delivery</b> after payment · 14-page PDF + 7 inquiry templates (Chinese, with translations) · Research method only — not a purchasing agency</p>
+      </div>
+      <div class="phone-col">
+        <div>
+          <div class="doc">
+            <h4>Case file · Pet water dispenser 3.2L / 304</h4>
+            <div class="dt">One product, five prices</div>
+            <table>
+              <tr><th>Listing price</th><td>¥29.80</td><td class="bad">Bait — plastic / parts only</td></tr>
+              <tr><th>Chat "quote"</th><td>¥65</td><td class="bad">Unverified — name card, no numbers</td></tr>
+              <tr><th>Red-packet price</th><td>¥61</td><td class="bad">Full unit unconfirmed</td></tr>
+              <tr><th>Ex-factory · 200 pcs</th><td>¥108</td><td class="ok">Confirmed</td></tr>
+              <tr><th>Ex-factory · 500 pcs</th><td>¥106</td><td class="ok">Confirmed</td></tr>
+            </table>
+            <p class="doc-note">True band ¥100–153. The only prices that belong in your math: ¥106–108 (≈ $15.89–16.19).</p>
+          </div>
+          <p class="phone-cap">▲ From the guide's case file — real numbers, suppliers anonymized.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="car-dots">
+    <button class="on" aria-label="Show the Playbook"></button>
+    <button aria-label="Show the Prompt Pack"></button>
+    <button aria-label="Show the 1688 Field Guide"></button>
   </div>
 </header>
 
@@ -389,5 +483,16 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.car-dots button'),i=0,timer;
+  function show(n){i=(n+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('active',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});}
+  function auto(){clearInterval(timer);timer=setInterval(function(){show(i+1)},9000);}
+  document.querySelector('.car-btn.prev').addEventListener('click',function(){show(i-1);auto();});
+  document.querySelector('.car-btn.next').addEventListener('click',function(){show(i+1);auto();});
+  dots.forEach(function(d,k){d.addEventListener('click',function(){show(k);auto();});});
+  auto();
+})();
+</script>
 </body>
 </html>
