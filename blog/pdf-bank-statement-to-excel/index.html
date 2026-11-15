@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <title>Convert a PDF Bank Statement to Excel and Verify the Result | Hao Studio</title>
+  <meta name="description" content="Convert a PDF bank statement to Excel, catch missing or shifted rows, and verify the export against balances and live debit and credit totals.">
+  <link rel="canonical" href="https://haostudio.me/blog/pdf-bank-statement-to-excel/">
+  <meta property="og:site_name" content="Hao Studio">
+  <meta property="og:title" content="Convert a PDF Bank Statement to Excel and Verify the Result">
+  <meta property="og:description" content="Convert a PDF bank statement to Excel, catch missing or shifted rows, and verify the export against balances and live debit and credit totals.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://haostudio.me/blog/pdf-bank-statement-to-excel/">
+  <link rel="stylesheet" href="../assets/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Convert a PDF Bank Statement to Excel and Verify the Result",
+  "description": "Convert a PDF bank statement to Excel, catch missing or shifted rows, and verify the export against balances and live debit and credit totals.",
+  "datePublished": "2026-11-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Hao Studio",
+    "url": "https://haostudio.me"
+  },
+  "mainEntityOfPage": "https://haostudio.me/blog/pdf-bank-statement-to-excel/"
+}
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="logo" href="https://haostudio.me">Hao <span>Studio</span></a>
+      <div class="nav-links">
+        <a href="https://haostudio.me">Shop</a>
+        <a href="../">Blog</a>
+      </div>
+    </div>
+  </nav>
+  <main id="main" class="wrap article-wrap">
+    <article>
+      <header class="article-header">
+        <a class="back" href="../">← All articles</a>
+        <h1>Convert a PDF Bank Statement to Excel and Verify the Result</h1>
+        <time datetime="2026-11-15">November 15, 2026</time>
+      </header>
+      <div class="article-body">
+<p>If you searched for “convert PDF bank statement to Excel,” the conversion itself is only the first step. Keep the source page for every extracted row, check the transaction columns against the PDF, then verify the running balances and totals in Excel. That gives you a way to catch a row that was omitted, placed on the wrong line, or copied into the wrong amount column.</p>
+<p>Start by checking which pages have selectable text and which are scans. Extract the text pages into a table. Route scan pages through an appropriate recognition or manual entry step and mark any page you cannot verify. Treat the spreadsheet as ready for handoff after every source page has a documented status and every difference in the balance checks has been reviewed.</p>
+<h2>Inspect the PDF before choosing how to extract it</h2>
+<p>Try selecting an individual date, description, and amount in a representative transaction. Then test another page, especially if a statement contains a mix of exports and scanned pages. Selectable text can help an extractor recover the characters, even when the visible rows and columns still have to be reconstructed from their positions. Scanned pages need a way to read the image. Low contrast, skew, or a clipped margin can leave the amount ambiguous after recognition.</p>
+<p>Record which pages contain transactions and which contain supporting material such as terms or summary boxes. Keep the original statement and give the conversion a separate working name. For a statement with several account sections, make the account boundaries explicit before extracting anything. A page total or an opening balance from another account can look like an ordinary numeric row after the headings have been stripped out of the PDF.</p>
+<h2>Why copying and pasting can miss a transaction</h2>
+<p>A statement page looks like a spreadsheet because the elements line up on screen. Copying the text may follow the PDF&#x27;s internal order instead of the order a reader sees. A wrapped description can paste as its own record. An empty amount column can visually collapse so the remaining values appear to slide left. At the end of a page, a footer may arrive between a transaction and the next line of its description. These failures can occur while the pasted output still resembles a table.</p>
+<p>Use each transaction&#x27;s layout to identify the row boundaries. Look for the date or another field that begins a transaction, then use the column positions to separate debit, credit, and balance. When the description wraps, attach its continuation to the correct transaction and preserve the full wording. Check transitions at page breaks, where the repeated column header and carried-forward amounts often sit close together. Also check repeated transaction amounts. A duplicated row can look plausible if you inspect it without the nearby statement lines.</p>
+<h2>Build a worksheet with a path back to the PDF</h2>
+<p>Keep a raw extraction sheet and a working transaction sheet. Give the working sheet separate columns for date, description, movement, reported balance, and source location. If the statement shows debits and credits separately, retain them in separate columns. If it uses signed amounts, document the convention based on visible statement examples. For a scan, keep an explicit review field so a person can distinguish checked amounts from amounts awaiting a source comparison.</p>
+<p>Inspect dates and numbers after converting text to cells that Excel can calculate with. Be deliberate about the statement&#x27;s date order, the thousands separator, and the decimal mark. Check withdrawals and credits against the source before using the signed movement in formulas. Keep transaction ordering through the verification stage, even if you plan to reorder the file by vendor or date for a later workflow. Each expected balance needs the correct predecessor.</p>
+<h2>Verify the output where mistakes would surface</h2>
+<p>For each transaction, calculate the expected balance from the prior reported balance and the current movement. Use the statement&#x27;s opening balance for the first transaction when the source provides it. Compare expected and reported figures, and tie the debit and credit totals to the transaction ranges with live Excel formulas. Check the closing balance against the opening balance plus the net movement. A correct period total can coexist with an error inside the sequence, so review the row checks and the totals together.</p>
+<p>Hao Studio tested this with a 25-transaction statement whose balance on the 13th transaction was deliberately changed by +10.00. The exported worksheet put the row-level discrepancy at Excel row 14. This case tested whether verification would find an error within a statement. It gives you values and a location you can use to understand what an actionable exception looks like.</p>
+<div class="doc"><table><caption>What the conversion review made visible</caption>
+<thead><tr><th scope="col">Verification item</th><th scope="col">Result in Hao Studio&#x27;s workflow</th></tr></thead>
+<tbody>
+<tr><td>Balance expected after the affected transaction</td><td>8,489.82</td></tr>
+<tr><td>Balance shown on that transaction</td><td>8,499.82</td></tr>
+<tr><td>Location returned by the check</td><td>Excel row 14</td></tr>
+<tr><td>Debit and credit totals</td><td>Recalculable with live Excel formulas</td></tr>
+<tr><td>Page that cannot be parsed</td><td>Listed as its own exception</td></tr>
+</tbody></table></div>
+<p>When the sheet flags a row, compare the values just before and after it with the PDF. If a line is missing, the first visible discrepancy can be on the next transaction because that balance reflects movement the export omitted. A scanned digit can instead damage the balance on the current row. Recover the source evidence first, make the correction in the working sheet, and rerun the checks. Leave the original extraction unchanged so someone else can see what the conversion produced.</p>
+<h2>Account for every page before sharing the workbook</h2>
+<p>Keep a short page log with the source page, its role, and its review status. If a page does not parse, mark it explicitly. A page with no transactions can be recorded as such after inspection. A page whose contents were unreadable remains incomplete until someone checks it. Label any workbook delivered with an unresolved page accordingly so the recipient knows which section cannot yet be relied on. Where more than one account appears in the PDF, review each account&#x27;s balance sequence on its own.</p>
+<p>Ask the recipient what they need to do with the output. A reviewer tracing rows wants the source positions and exception notes. Someone importing the data may also need a clean transaction sheet with stable columns and numeric values. Both views can use the same checked extraction. Keep any presentation sheet tied back to the reviewed rows so a late correction does not leave two versions of the period in circulation.</p>
+<h3>Review fields the balance formula cannot check</h3>
+<p>Once the figures tie, compare transaction dates, descriptions, and references against the source. A balance can still reconcile when recognition has changed a character in a payment reference or assigned the wrong date to the correct amount. Prioritize the fields the recipient will use to match payments, and inspect the surrounding source text if a description looks truncated. Keep long references as text where leading characters matter. When you fix an identifier, verify the corrected field in the exported file itself so the receiving application sees the same value you reviewed.</p>
+<h2>Choose a handoff that fits the review</h2>
+<p>If someone else is doing the conversion, ask what happens when a page fails to parse and how the workbook points the reviewer to a discrepancy. Include the desired account scope and output columns with the request. Hao Studio offers a <a href="https://www.fiverr.com/hao315/convert-pdf-bank-statements-to-excel-and-verify-every-balance">done-for-you PDF bank statement conversion</a> for that workflow. For a conversion you plan to run yourself, StatementCheck is the self-service option for checking the exported figures and reviewing exceptions in Excel.</p>
+      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Want to verify your own statement export?</h2>
+        <a class="btn" data-money-page href="https://www.creem.io/product/prod_aAiByVAcqsTfVxlLkHfJC">Get StatementCheck</a>
+      </section>
+    </article>
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        <li><a href="../how-to-reconcile-a-bank-statement-in-excel/">How to Reconcile a Bank Statement in Excel</a></li>
+        <li><a href="../shopify-csv-import-errors/">Fix Shopify CSV Import Errors Before Uploading Product Variants</a></li>
+      </ul>
+    </section>
+    <div class="store-cta"><a class="btn ghost" href="https://haostudio.me">Explore the Hao Studio store</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-in">
+      <span>Hao Studio</span>
+      <a href="https://haostudio.me">Visit the store</a>
+    </div>
+  </footer>
+</body>
+</html>

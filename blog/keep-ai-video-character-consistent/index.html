@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <title>AI Video Character Consistency Across Shots | Hao Studio</title>
+  <meta name="description" content="Keep the same AI video character across shots with a reference sheet for facial anchors, wardrobe anchors, and details the camera cannot change.">
+  <link rel="canonical" href="https://haostudio.me/blog/keep-ai-video-character-consistent/">
+  <meta property="og:site_name" content="Hao Studio">
+  <meta property="og:title" content="AI Video Character Consistency Across Shots">
+  <meta property="og:description" content="Keep the same AI video character across shots with a reference sheet for facial anchors, wardrobe anchors, and details the camera cannot change.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://haostudio.me/blog/keep-ai-video-character-consistent/">
+  <link rel="stylesheet" href="../assets/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Video Character Consistency Across Shots",
+  "description": "Keep the same AI video character across shots with a reference sheet for facial anchors, wardrobe anchors, and details the camera cannot change.",
+  "datePublished": "2026-11-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Hao Studio",
+    "url": "https://haostudio.me"
+  },
+  "mainEntityOfPage": "https://haostudio.me/blog/keep-ai-video-character-consistent/"
+}
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="logo" href="https://haostudio.me">Hao <span>Studio</span></a>
+      <div class="nav-links">
+        <a href="https://haostudio.me">Shop</a>
+        <a href="../">Blog</a>
+      </div>
+    </div>
+  </nav>
+  <main id="main" class="wrap article-wrap">
+    <article>
+      <header class="article-header">
+        <a class="back" href="../">← All articles</a>
+        <h1>AI Video Character Consistency Across Shots</h1>
+        <time datetime="2026-11-15">November 15, 2026</time>
+      </header>
+      <div class="article-body">
+<p>AI video character consistency starts with a character reference you can reuse before writing individual shot prompts. Write down the facial features that identify the person, the clothing features that identify the wardrobe, and the details you want every shot to preserve. Then check each generated shot against that reference before it joins the edit. A camera move or a change in lighting should leave enough of those cues for the viewer to recognize the same person.</p>
+<p>Hao Studio used that method for <em>The Last Lighthouse</em>, a short with 12 shots. The lead&#x27;s face stayed consistent throughout the sequence, and no discarded shot needed regeneration. The character sheet did the practical work of connecting each shot to the same identity. The shot instructions could then focus on what changed in the scene.</p>
+<h2>Define the face with features you can check on screen</h2>
+<p>Choose a reference that shows the face clearly. Describe the shape and placement of features a viewer can recognize in different framing. A facial anchor can be the contour of the jaw, the relationship between the brows and eyes, or a distinctive hairline if it is visible. A broad description such as “cinematic lead” leaves the model and the reviewer with too much room to interpret who is in the shot. A useful facial anchor points to something they can see.</p>
+<p>Use the same wording for each recurring facial feature. Keep it short enough to copy into a prompt without rewriting it for every shot. If a shot places part of the face in shadow, note which anchors should still be visible from that angle. A side view gives the reviewer different evidence than a front view. Use the set of features that can actually be seen rather than trying to judge an obscured face against a front-facing reference alone.</p>
+<h2>Record the wardrobe as a continuity detail</h2>
+<p>Describe the recurring pieces by their visible construction and material. A jacket with a recognizable collar or closure gives you a more stable cue than a mood word about the outfit. Specify how the wardrobe sits on the character if the shape matters. Under different lighting, a surface can look like a different color while the cut, seams, or closure remain recognizable. Those are the details a reviewer can use to distinguish a lighting change from a wardrobe change.</p>
+<p>If the story calls for a wardrobe change, add it explicitly to the shot notes along with where it begins. Keep the face definition the same. If a layer comes off in the action, document what should be underneath before generating the next shot. A planned change is much easier to approve when the reference sheet and shot list describe it in the same terms. Add a note for the cut where a viewer first sees it.</p>
+<div class="doc"><table><caption>Character reference used for The Last Lighthouse</caption>
+<thead><tr><th scope="col">Reference item</th><th scope="col">Role in the workflow</th></tr></thead>
+<tbody>
+<tr><td>Facial anchors</td><td>Identify the lead through different shots</td></tr>
+<tr><td>Wardrobe anchors</td><td>Keep recognizable outfit details available to each prompt</td></tr>
+<tr><td>Never-change list</td><td>Specify which character details every shot must preserve</td></tr>
+<tr><td>Sequence reviewed</td><td>12 shots</td></tr>
+<tr><td>Observed result</td><td>Same lead face throughout, with no discarded shots regenerated</td></tr>
+</tbody></table></div>
+<h2>Keep a short list of details that cannot change</h2>
+<p>Put the identity-critical attributes on a list the editor can check without rereading the whole character profile. Include details that would signal a different person or an unexpected wardrobe switch if they changed between cuts. Keep subjective qualities out unless you can translate them into a visible cue. The reference sheet can hold broader creative notes. The never-change list should tell the reviewer what to inspect when a take is otherwise ready.</p>
+<p>Use the list to resolve ambiguous feedback. If someone says a face feels different, ask which anchor shifted and in which part of the shot. The answer may be a genuine difference in facial structure, a frame distorted by motion, or an angle that hides the feature under review. Record the issue alongside the reference being used. That gives you a concrete criterion if the shot needs a correction or a different edit point.</p>
+<h2>Write shot directions around the same character reference</h2>
+<p>Start each shot description with the same character reference and recurring wardrobe details. Then specify the action, setting, framing, and light that belong to the current shot. Keep the action instructions independent of the character description so changes to camera position do not accidentally introduce a new feature. If the tool you use accepts a reference image, keep the approved reference available and attach it where the workflow supports it. The written anchors still give the editor a way to check what showed up.</p>
+<p>Watch for instructions that compete with the reference. A request for a different hairstyle can invalidate a hairline anchor. A camera note that puts the face entirely out of view can make a planned identity check impossible. Adjust the direction to match what the shot needs to communicate. When the face is intentionally hidden, use a visible wardrobe cue or let an adjoining shot re-establish the identity. Mark which cue the audience is meant to rely on in that segment.</p>
+<h2>Review continuity in the sequence as well as in still frames</h2>
+<p>Pause on a frame where the lead is readable, compare the anchors with the reference, then watch the motion through the whole clip. A feature can look stable in one frame and shift during a turn. Check the cut into and out of the shot at editing speed to see whether the viewer can still track who is on screen. Keep a note of the exact moment if a shift is visible. That can help you decide whether an alternative edit point will solve the continuity issue.</p>
+<p>The outcome for <em>The Last Lighthouse</em> records what happened on that production. For a new short, decide how you will judge consistency before you start editing. Use the same reference across the sequence and log specific changes whenever a take needs work. If several shots struggle with the same anchor, revisit how it is described or framed before sending the next group of prompts. Clearer anchor wording helps the next reviewer see whether that change addressed the issue.</p>
+<h3>Use the preceding shot to judge a difficult cut</h3>
+<p>Compare the last readable moment before the cut with the first readable moment after it. Note what the viewer can carry across, such as the jacket closure or the outline of the face. If both moments hide those cues, consider a different edit point or a shot that lets the viewer see the character clearly before the sequence moves on. Keep that decision with the edit notes. The next editor can then see which shot carries the recognition cue when choosing between alternate takes, without asking the prompt writer what the cut was supposed to do.</p>
+<h2>Package the reference with the shot list</h2>
+<p>Keep the approved character sheet, the planned changes, and the notes on accepted shots with the project. Give each shot enough context for a collaborator to identify which reference version and wardrobe state apply. If the design changes for creative reasons, update the sheet deliberately and check the affected continuity around the edit. The record helps you resume work later without inferring how a prior prompt described the lead.</p>
+<p>The <a href="https://www.creem.io/product/prod_5D47vS65nFsqtTf9b8untx">full AI video playbook</a> covers the broader production workflow from planning through editing. For a reusable starting point focused on the prompts themselves, use the prompt pack to build a character reference you can carry from shot to shot.</p>
+      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Building a reusable character reference?</h2>
+        <a class="btn" data-money-page href="https://www.creem.io/product/prod_6ztDgfFOknyuvSxs7vQGsj">Get the prompt pack</a>
+      </section>
+    </article>
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        <li><a href="../shopify-csv-import-errors/">Fix Shopify CSV Import Errors Before Uploading Product Variants</a></li>
+        <li><a href="../1688-supplier-red-flags/">1688 Supplier Red Flags to Check Before You Shortlist a Seller</a></li>
+      </ul>
+    </section>
+    <div class="store-cta"><a class="btn ghost" href="https://haostudio.me">Explore the Hao Studio store</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-in">
+      <span>Hao Studio</span>
+      <a href="https://haostudio.me">Visit the store</a>
+    </div>
+  </footer>
+</body>
+</html>

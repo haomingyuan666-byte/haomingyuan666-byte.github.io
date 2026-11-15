@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <title>Fix Shopify CSV Import Errors Before Uploading Product Variants | Hao Studio</title>
+  <meta name="description" content="Fix Shopify CSV import errors by checking variant rows, unique SKUs, capacity-based prices, and the product claims that reach the storefront.">
+  <link rel="canonical" href="https://haostudio.me/blog/shopify-csv-import-errors/">
+  <meta property="og:site_name" content="Hao Studio">
+  <meta property="og:title" content="Fix Shopify CSV Import Errors Before Uploading Product Variants">
+  <meta property="og:description" content="Fix Shopify CSV import errors by checking variant rows, unique SKUs, capacity-based prices, and the product claims that reach the storefront.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://haostudio.me/blog/shopify-csv-import-errors/">
+  <link rel="stylesheet" href="../assets/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fix Shopify CSV Import Errors Before Uploading Product Variants",
+  "description": "Fix Shopify CSV import errors by checking variant rows, unique SKUs, capacity-based prices, and the product claims that reach the storefront.",
+  "datePublished": "2026-11-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Hao Studio",
+    "url": "https://haostudio.me"
+  },
+  "mainEntityOfPage": "https://haostudio.me/blog/shopify-csv-import-errors/"
+}
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="logo" href="https://haostudio.me">Hao <span>Studio</span></a>
+      <div class="nav-links">
+        <a href="https://haostudio.me">Shop</a>
+        <a href="../">Blog</a>
+      </div>
+    </div>
+  </nav>
+  <main id="main" class="wrap article-wrap">
+    <article>
+      <header class="article-header">
+        <a class="back" href="../">← All articles</a>
+        <h1>Fix Shopify CSV Import Errors Before Uploading Product Variants</h1>
+        <time datetime="2026-11-15">November 15, 2026</time>
+      </header>
+      <div class="article-body">
+<p>When you are fixing Shopify CSV import errors for a product with variants, rebuild the row list from the actual combinations you intend to sell. Use the same product handle for its rows, give each sellable combination its own SKU, and verify the price that belongs to each row. A successful upload still leaves you with a storefront to inspect for mismatched options, wrong prices, or claims you cannot substantiate.</p>
+<p>Hao Studio&#x27;s handled tumbler case combined 4 colors with 2 capacities for 8 variant SKUs. The 30oz version was priced at $24.99 and the 40oz version at $27.99. Before uploading a file like this, compare the spreadsheet with the intended option grid. After importing, open the product in the admin and select each capacity in the storefront preview to check what a buyer would see.</p>
+<h2>Match the file to a store export before editing variants</h2>
+<p>Start from a fresh product export or the current product CSV template. Use the header names in that file and keep the product and variant fields in their own columns. A spreadsheet saved as a workbook still needs to be exported as a comma-separated UTF-8 CSV. Check the saved file if the import preview appears to shift values across columns. Descriptions can contain commas and line breaks, so use a spreadsheet export that quotes those fields correctly and preserves the actual row boundaries.</p>
+<p>Start with a copy of the existing product data if you are updating a listing. Identify which fields need changes and which fields already contain values the store relies on. In Shopify&#x27;s product CSV, variant fields depend on the option columns that identify the corresponding rows. Removing those columns while keeping dependent fields can disrupt variants. Check the current import instructions against your export before changing option values on a live product, especially if inventory or other systems reference its variants.</p>
+<h2>Expand the option grid into sellable rows</h2>
+<p>Build the row list on a working sheet first. Put a row against each permitted color and capacity pairing. Use the exact option labels intended for the product page and keep the option order consistent throughout the product&#x27;s rows. Look for extra spaces and spelling differences that can turn a label into a separate option. Keep this grid visible while reviewing the CSV so you can spot a missing combination even when the row count looks right.</p>
+<div class="doc"><table><caption>Handled tumbler variant and cost check</caption>
+<thead><tr><th scope="col">Field</th><th scope="col">Result from the case</th></tr></thead>
+<tbody>
+<tr><td>Variant grid</td><td>4 colors × 2 capacities</td></tr>
+<tr><td>Sellable variant SKUs</td><td>8</td></tr>
+<tr><td>30oz selling price</td><td>$24.99</td></tr>
+<tr><td>40oz selling price</td><td>$27.99</td></tr>
+<tr><td>Sourcing cost and conversion</td><td>¥45 at 6.67, about $6.75</td></tr>
+</tbody></table></div>
+<p>The product handle groups rows into a listing. A SKU identifies the specific unit the store needs to track or pick. Keep the handle stable across the product&#x27;s rows and check that every SKU occurs only where it belongs. Look for duplicated option combinations as a separate check. Two unique SKU strings can still point to the same color and capacity if the option values were filled down incorrectly.</p>
+<h2>Validate SKUs and price overrides separately</h2>
+<p>Keep a reference list of identifiers from the rest of the catalog and check for SKU collisions outside this product. Treat SKU cells as text so a spreadsheet does not strip leading characters or reinterpret an identifier as a number. Check the CSV after saving, since what looks correct in the workbook may export differently. Review the values against whatever will use the SKUs downstream, such as a fulfillment sheet or inventory sync.</p>
+<p>Fill the intended selling price from a capacity-to-price lookup on the working sheet. For the tumbler, every 30oz row should receive $24.99 and every 40oz row should receive $27.99. Export the resolved prices as plain numeric values in the price column used by the template, with no currency symbol. Look for a capacity whose price differs across colors. That tends to expose an accidental paste or fill when the selling price is meant to depend on capacity alone.</p>
+<p>Keep the sourcing cost separate from the price a shopper pays. The case used ¥45 and a rate of 6.67 to arrive at about $6.75. Putting that amount into the selling-price column would give the import a valid number with the wrong meaning. Check base price, cost, and any store-specific market pricing by field name before upload. If your store uses market-specific prices, verify those in the appropriate shopper context as well.</p>
+<h2>Review the copy before it becomes a product claim</h2>
+<p>The pre-listing scan in the tumbler case caught a reference to another brand in a cup-holder fit statement and an absolute leak-proof guarantee. Review the title, product description, and other customer-facing fields for claims that need evidence. If you have measured the base, write the relevant dimension and units in the description. If you have reliable test results for a lid or seal, describe the conditions those results cover. Leave unsupported compatibility and performance wording out of the listing.</p>
+<p>A CSV preview tells you where a description landed. The text still needs a person to read it alongside the available product evidence. Inspect wording inherited from the supplier as well as anything added while editing the listing. Review translations against the source so the English description does not turn a qualified statement into a promise. Save the approved copy with the version of the CSV that will be uploaded so it is easy to compare against the import.</p>
+<h2>Close the loop in the admin and the storefront</h2>
+<p>Review the import preview with the working grid open. If the parser reports an error, check the handle, option names and values, and price format on the affected rows. Compare a failing row with a nearby row for the same product. Check the most recent CSV you actually uploaded. Recurring errors can come from reusing a file exported before the workbook was corrected. Keep the file you reviewed and the file you import identifiable throughout this process.</p>
+<p>After the import, open the product and compare every available option with the working grid. Confirm that the selected color and capacity display the intended price and that the corresponding SKU is the one your fulfillment process expects. Read the description in the product preview, where formatting and copied claims can stand out differently from a spreadsheet. If anything differs, decide whether it originated in the working grid, the exported CSV, or a setting on the product before you make another upload.</p>
+<h3>Record what changed before retrying an update</h3>
+<p>Save the error text with the failed file and note which rows you changed. If a previous import created a product, review what exists in the admin before uploading a correction. Confirm whether the next import should create a listing or update the existing handle. Make the correction in the working grid, export again, and check the relevant rows in the resulting file. For an existing listing, compare the post-import export with your saved copy to see whether the intended variant information changed and whether the fields you expected to carry through still contain the right values.</p>
+<p>When sharing a supplier listing for preparation, include the intended option grid, your capacity prices, the store&#x27;s preferred SKU format, and any verified claims with their evidence. Hao Studio&#x27;s Shopify listing service can use those inputs to prepare a file with variant rows and copy ready for your store review.</p>
+      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Need an import-ready product listing?</h2>
+        <a class="btn" data-money-page href="https://www.fiverr.com/hao315/turn-your-1688-product-into-an-import-ready-shopify-listing">Get Shopify listing help</a>
+      </section>
+    </article>
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        <li><a href="../1688-prices-explained/">Why Are 1688 Prices So Low? What One Factory Quote Revealed</a></li>
+        <li><a href="../keep-ai-video-character-consistent/">AI Video Character Consistency Across Shots</a></li>
+      </ul>
+    </section>
+    <div class="store-cta"><a class="btn ghost" href="https://haostudio.me">Explore the Hao Studio store</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-in">
+      <span>Hao Studio</span>
+      <a href="https://haostudio.me">Visit the store</a>
+    </div>
+  </footer>
+</body>
+</html>

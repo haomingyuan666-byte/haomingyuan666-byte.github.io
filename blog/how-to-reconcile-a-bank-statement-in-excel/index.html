@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <title>How to Reconcile a Bank Statement in Excel | Hao Studio</title>
+  <meta name="description" content="Reconcile a bank statement in Excel with a running balance check, live debit and credit totals, and a real example of a misplaced balance.">
+  <link rel="canonical" href="https://haostudio.me/blog/how-to-reconcile-a-bank-statement-in-excel/">
+  <meta property="og:site_name" content="Hao Studio">
+  <meta property="og:title" content="How to Reconcile a Bank Statement in Excel">
+  <meta property="og:description" content="Reconcile a bank statement in Excel with a running balance check, live debit and credit totals, and a real example of a misplaced balance.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://haostudio.me/blog/how-to-reconcile-a-bank-statement-in-excel/">
+  <link rel="stylesheet" href="../assets/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Reconcile a Bank Statement in Excel",
+  "description": "Reconcile a bank statement in Excel with a running balance check, live debit and credit totals, and a real example of a misplaced balance.",
+  "datePublished": "2026-11-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Hao Studio",
+    "url": "https://haostudio.me"
+  },
+  "mainEntityOfPage": "https://haostudio.me/blog/how-to-reconcile-a-bank-statement-in-excel/"
+}
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="logo" href="https://haostudio.me">Hao <span>Studio</span></a>
+      <div class="nav-links">
+        <a href="https://haostudio.me">Shop</a>
+        <a href="../">Blog</a>
+      </div>
+    </div>
+  </nav>
+  <main id="main" class="wrap article-wrap">
+    <article>
+      <header class="article-header">
+        <a class="back" href="../">← All articles</a>
+        <h1>How to Reconcile a Bank Statement in Excel</h1>
+        <time datetime="2026-11-15">November 15, 2026</time>
+      </header>
+      <div class="article-body">
+<p>If “reconcile bank statement in Excel” is on your monthly close checklist, start by checking whether each transaction explains the move from the previous bank balance to the next one. Matching the closing balance alone tells you little about where a discrepancy began. A running balance check turns that vague difference into a row you can pull up in the original statement and investigate.</p>
+<p>Keep the balance reported by the bank in its own column and calculate the expected balance beside it. Subtract expected from reported, then filter for differences. In Hao Studio&#x27;s statement test, that check located an intentionally altered balance at Excel row 14. Preserve the original transaction order while you run the check, then use the verified rows to compare the bank activity with your books.</p>
+<h2>Give the statement its own worksheet</h2>
+<p>Keep an untouched copy of the statement export. In a separate working sheet, put each transaction on its own row with the date, description, debit, credit, and reported balance. Keep a reference to the original page or export row if the file has one. When a reviewer asks about a flagged line, that reference saves them from searching for a description that might recur across the statement. Copy the opening and closing balances into separately labeled cells so they remain visible during review.</p>
+<p>Before writing a formula, look at a transaction whose direction you can recognize in the source. A deposit should increase the balance and a withdrawal should decrease it. Some exports store withdrawals as positive amounts in a debit column. Others use signed values in a single amount column. If you subtract a debit that is already negative, you turn a withdrawal into an increase. State your convention in the sheet and use it consistently. Keep the source fields visible so the next reviewer can see how the conversion was made.</p>
+<p>Check that amounts are numeric cells. A value can look right on screen while behaving like text in a formula or disappearing from a total. Inspect the cells around page boundaries first, where headers and subtotals tend to interrupt a PDF extraction. If a page is unreadable, record it as an exception tied to the source page. The reviewer needs to know where statement coverage is incomplete before relying on any sums.</p>
+<h2>Calculate the expected balance row by row</h2>
+<p>For separate positive debit and credit columns, the calculation is <code>previous reported balance + credit - debit</code>. For a signed amount column, use <code>previous reported balance + signed amount</code>. On the earliest transaction, reference the opening balance instead of a prior row. For every subsequent transaction, use the prior row&#x27;s reported balance. This checks each printed transition independently. Use the same displayed precision as the statement when comparing the amounts, so a floating-point artifact does not look like a meaningful break.</p>
+<p>Add a Difference column that computes <code>reported balance - expected balance</code>. A positive difference means the recorded balance sits above the calculated one. A negative difference means it sits below. Leave missing required values visibly unresolved and handle inapplicable debit or credit cells according to the export&#x27;s convention. A blank running balance and an empty debit on a deposit row carry very different meanings. Give the Difference column a filter so you can isolate the rows that need attention without changing their order.</p>
+<h3>What the planted break looked like</h3>
+<p>Hao Studio used a statement with 25 transactions to test whether the reconciliation would identify a specific error. The reported balance on the 13th transaction was deliberately written too high. The other totals in the worksheet were available as live formulas, so the reviewer could recalculate debit and credit totals directly in Excel and inspect the underlying entries.</p>
+<div class="doc"><table><caption>Running balance exception from the statement test</caption>
+<thead><tr><th scope="col">Check</th><th scope="col">Observed value</th></tr></thead>
+<tbody>
+<tr><td>Affected transaction</td><td>13th</td></tr>
+<tr><td>Location in the test worksheet</td><td>Excel row 14</td></tr>
+<tr><td>Expected balance</td><td>8,489.82</td></tr>
+<tr><td>Reported balance</td><td>8,499.82</td></tr>
+<tr><td>Reported minus expected</td><td>+10.00</td></tr>
+</tbody></table></div>
+<p>The worksheet row is a location in that particular file. If you add a title above the headers or move the transactions into another sheet, the same transaction will have a different row number. Keep the transaction position and source reference alongside your spreadsheet row when you communicate the finding. That gives another person a way to find it even if their copy has a different layout.</p>
+<h2>Find the earliest unexplained transition</h2>
+<p>Filter the difference column and start with the earliest exception in statement order. Compare the previous balance, the movement on the current line, and the current reported balance against the original. If the PDF agrees with what the worksheet imported, document the evidence and ask the appropriate reviewer to resolve it. If the worksheet differs from the source, correct the working copy from the source and leave a note with the original imported value. A formula flag tells you where to look. The comparison tells you what actually changed.</p>
+<p>Inspect the neighboring transactions before counting up exceptions. With the prior-reported-balance method, a bad balance can affect the transition into that row and the transition out of it. The two flags may reflect one incorrect balance. A missing transaction can also show up at the next visible balance because the change includes a movement the spreadsheet never received. Read the statement around the break and document the underlying issue before recording the resolution.</p>
+<p>Keep the worksheet in bank order through this stage. A date sort does not necessarily reconstruct the sequence the bank used to compute balances because transactions can share a posting date. For a statement displayed newest first, determine the balance direction from the source and preserve that order in your archive. Build a working sequence that follows successive balances, and check it against the original before interpreting the signs of any differences.</p>
+<h2>Reconcile the period totals and then the ledger</h2>
+<p>Use live <code>SUM</code> formulas over the transaction debit and credit ranges. Use those totals to check the movement between the opening and closing balances. Keep opening balances, page subtotals, and carried-forward figures out of the transaction ranges. A visible subtotal pasted into the middle of the data can make a sheet look reassuring while adding an amount already accounted for. Compare the formula ranges with the original statement scope whenever a new page or batch is appended.</p>
+<p>A clean statement check gives you a reliable bank-side list for matching against the ledger. Compare references, amounts, and dates together and record which transactions were matched. Repeated amounts need additional evidence, especially when descriptions are abbreviated. Leave unmatched amounts visible with a reason where you have one. Timing differences may explain why an entry appears in one list before the other, so keep them in a review list for the person responsible for the close.</p>
+<h2>Leave an Excel file someone else can review</h2>
+<p>Save the source extract, formulas, bank-to-ledger matches, and exceptions with clear labels. In each exception note, capture the original location, the observed difference, the supporting evidence, and its resolution or current status. Leave the sheet filters easy to reset. A reviewer should be able to follow a flagged formula back to its debit, credit, and reported-balance inputs without asking how the workbook was put together.</p>
+<p>Before handing the file off, compare the sheet&#x27;s coverage with the source statement, clear review-only filters, and recalculate the formulas. Check that the opening and closing figures still refer to the intended period. Keep unparsed pages in the exception list until someone has entered or verified them. If the bank extract and ledger arrived as separate Excel or CSV files and you need a combined reconciliation, provide the originals, the account and period boundaries, and any known timing differences with your request.</p>
+      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Need help reconciling your files?</h2>
+        <a class="btn" data-money-page href="https://www.fiverr.com/hao315/merge-and-reconcile-your-excel-or-csv-files-into-one-accurate-report">Get Excel reconciliation help</a>
+      </section>
+    </article>
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        <li><a href="../pdf-bank-statement-to-excel/">Convert a PDF Bank Statement to Excel and Verify the Result</a></li>
+        <li><a href="../shopify-csv-import-errors/">Fix Shopify CSV Import Errors Before Uploading Product Variants</a></li>
+      </ul>
+    </section>
+    <div class="store-cta"><a class="btn ghost" href="https://haostudio.me">Explore the Hao Studio store</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-in">
+      <span>Hao Studio</span>
+      <a href="https://haostudio.me">Visit the store</a>
+    </div>
+  </footer>
+</body>
+</html>
