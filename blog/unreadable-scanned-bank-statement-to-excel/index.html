@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <title>How to Handle Unreadable Pages in a Scanned Bank Statement | Hao Studio</title>
+  <meta name="description" content="Identify unreadable bank statement pages, log coverage gaps, and decide when to review OCR, transcribe the page, or request a clearer copy.">
+  <link rel="canonical" href="https://haostudio.me/blog/unreadable-scanned-bank-statement-to-excel/">
+  <meta property="og:site_name" content="Hao Studio">
+  <meta property="og:title" content="How to Handle Unreadable Pages in a Scanned Bank Statement">
+  <meta property="og:description" content="Identify unreadable bank statement pages, log coverage gaps, and decide when to review OCR, transcribe the page, or request a clearer copy.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://haostudio.me/blog/unreadable-scanned-bank-statement-to-excel/">
+  <link rel="stylesheet" href="../assets/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Handle Unreadable Pages in a Scanned Bank Statement",
+  "description": "Identify unreadable bank statement pages, log coverage gaps, and decide when to review OCR, transcribe the page, or request a clearer copy.",
+  "datePublished": "2026-11-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Hao Studio",
+    "url": "https://haostudio.me"
+  },
+  "mainEntityOfPage": "https://haostudio.me/blog/unreadable-scanned-bank-statement-to-excel/"
+}
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="logo" href="https://haostudio.me">Hao <span>Studio</span></a>
+      <div class="nav-links">
+        <a href="https://haostudio.me">Shop</a>
+        <a href="../">Blog</a>
+      </div>
+    </div>
+  </nav>
+  <main id="main" class="wrap article-wrap">
+    <article>
+      <header class="article-header">
+        <a class="back" href="../">← All articles</a>
+        <h1>How to Handle Unreadable Pages in a Scanned Bank Statement</h1>
+        <time datetime="2026-11-16">November 16, 2026</time>
+      </header>
+      <div class="article-body">
+<p>If your search is “unreadable scanned bank statement to Excel,” start by identifying which page is missing from the export and what you can actually read on it. Record the page as a coverage exception as soon as ordinary extraction fails. Then choose whether someone should verify recognized text against the image, enter the visible rows by hand, or ask the client for a clearer source.</p>
+<p>Keep the exception open until its contents have been checked against a readable page. If the rest of the workbook needs to move ahead first, put the incomplete coverage status where the recipient will see it and name the affected page. A recipient can review the pages already checked while leaving tasks that require the full statement pending.</p>
+<h2>Check the transaction area on each page</h2>
+<p>Open the original PDF and work through it in file order. On each page, try selecting a date, a description, and an amount from a visible transaction. Paste the selection into a working note and compare the resulting text with the image on screen. A selectable page heading is only evidence about that heading. The body can still be a scan, and a page with recognition text can yield incorrect characters or leave part of a row inaccessible. Inspect the actual transaction area before marking the page as readable.</p>
+<p>Record what you observe. A page may yield usable transaction text, show a legible image without selectable text, or contain an image whose amounts cannot be read confidently. If the page visibly contains summary material or terms, note its role once you have inspected it. Use “unresolved” when you cannot determine whether the page contains transactions. A blank extraction result by itself gives you no evidence that the page had nothing to contribute.</p>
+<p>Use the position in the PDF as the primary locator and capture the printed page label if it differs. A cover page or an inserted image can make those references diverge. Someone opening the original attachment should be able to find the page from the log even if the PDF viewer displays a different numbering convention. Keep the locator when making a cropped working copy so the crop can be traced back to the complete page.</p>
+<h2>Make the coverage gap visible in the workbook</h2>
+<p>In Hao Studio&#x27;s conversion test, a bank statement contained 30 transactions. Page 4 was an image-only scan with no text layer. The converter parsed the remaining pages and flagged the scan in both Checks and Needs Review. The coverage check returned <code>FAIL</code> as designed, giving the reviewer a reason to look for the exception despite the successful extraction on the other pages.</p>
+<div class="doc"><table><caption>How the scan appeared in the coverage test</caption>
+<thead><tr><th scope="col">Observation</th><th scope="col">Recorded result</th></tr></thead>
+<tbody>
+<tr><td>Transactions in the source statement</td><td>30</td></tr>
+<tr><td>Page without a text layer</td><td>PDF page 4</td></tr>
+<tr><td>Other pages</td><td>Parsed normally</td></tr>
+<tr><td>Checks and Needs Review</td><td>Scan page flagged as an exception</td></tr>
+<tr><td>Coverage check</td><td>FAIL</td></tr>
+</tbody></table></div>
+<p>Use a page log with a row for every page in the PDF. Record the file reference, page locator, what you could read, current status, and who will take the next action. On an unresolved page, describe the failure plainly. A note such as “transaction table visible in image, no selectable line text” gives the next reviewer enough information to try recognition. A note such as “amount column cut off at the edge” points toward a replacement source instead. Put a short coverage summary near the front of the workbook and keep the detailed actions in the review list.</p>
+<h2>Choose a route for the unreadable page</h2>
+<h3>Review optical character recognition against the image</h3>
+<p>Use optical character recognition, or OCR, when the image is readable to a person and contains enough of the transaction area to review the result. Keep the extracted text with the source page reference. Compare it with the image row by row and look for changes that still resemble plausible entries, such as a missing minus sign, a shifted decimal, or a date joined to a description. Check the edge of each row and where text wraps, because the recognized values may be individually legible while appearing beside the wrong transaction.</p>
+<p>Keep uncertain fields flagged until the reviewer can resolve them from the image or a replacement source. If recognition produces a partial table, record which part still requires attention. Ask the reviewer to confirm the full page against the PDF before closing the exception. An OCR run can produce text without supplying enough evidence to call the page recovered.</p>
+<h3>Enter rows by hand when the image is legible</h3>
+<p>Choose manual entry when a person can read the source but the recognition output makes it hard to match values with their rows. Keep the source visible while entering the transactions into a working sheet with their page references. Record that the rows were transcribed and identify the fields that need a second look. During review, read from the source back to the sheet. That direction helps the reviewer notice a visible line for which the worksheet has no entry.</p>
+<p>If a field is genuinely unreadable, mark it as unresolved in the review list and describe what is obscured. Leave an uncertain amount out of any total that the recipient might treat as final. After verifying the transcription, append the reviewed entries with their source references and keep a note of the method. Use that note to answer later questions about why those rows were handled differently from the rest of the file.</p>
+<h3>Ask the client for a clearer source</h3>
+<p>Ask for a replacement when the page is cropped, blurred, or otherwise unreadable even after direct inspection. Name the statement and the page locator using the client&#x27;s established delivery channel. Describe what is missing and ask for the original downloadable statement or a complete, legible scan of the affected page. Mention which edge or column needs to be visible if that will help the client produce the right replacement. Keep the request linked to the existing exception so a later reply has a clear destination.</p>
+<p>Compare the replacement with the original before adding any rows. Check that it covers the same account section and statement period and that the visible material belongs at the intended location. If the client sends a replacement for the full statement, confirm that the page order still matches your log. Keep the original and the replacement distinguishable in your records, and point the review note to the file that supplied the recovered entries.</p>
+<h2>Label a handoff with an open exception</h2>
+<p>If you need to share a partial workbook, make the coverage status visible in the workbook summary and in the handoff message. State which page is unresolved, whether it was excluded from the transaction sheet, and what action is pending. A message for the test case could read, “Coverage incomplete. PDF page 4 is an image-only scan and is still open in Needs Review. The other pages were parsed. Keep statement-wide totals and reconciliation pending until page 4 is verified.” Use wording that reflects the file you are actually delivering.</p>
+<p>When the page is resolved, record who checked it and where the recovered entries came from. Refresh the coverage summary and share the revised workbook with a note identifying the resolved exception. If you need help with an unreadable statement, include the source file, the page reference if known, and whether you need a reviewed partial workbook while the replacement is pending.</p>
+      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Need a verified Excel conversion?</h2>
+        <a class="btn" data-money-page href="https://www.fiverr.com/hao315/convert-pdf-bank-statements-to-excel-and-verify-every-balance">Get PDF conversion help</a>
+      </section>
+    </article>
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        <li><a href="../pdf-bank-statement-to-excel/">Convert a PDF Bank Statement to Excel and Verify the Result</a></li>
+        <li><a href="../how-to-reconcile-a-bank-statement-in-excel/">How to Reconcile a Bank Statement in Excel</a></li>
+      </ul>
+    </section>
+    <div class="store-cta"><a class="btn ghost" href="https://haostudio.me">Explore the Hao Studio store</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-in">
+      <span>Hao Studio</span>
+      <a href="https://haostudio.me">Visit the store</a>
+    </div>
+  </footer>
+</body>
+</html>
