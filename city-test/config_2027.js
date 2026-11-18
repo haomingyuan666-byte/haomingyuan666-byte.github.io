@@ -2,7 +2,7 @@
   "use strict";
 
   const ACCESS_CODE = "YEAR2027";
-  const SHOP_NAME = "SHOP_NAME";
+  const SHOP_NAME = "NX-12";
 
   const configs = [{
     id: "2027",
