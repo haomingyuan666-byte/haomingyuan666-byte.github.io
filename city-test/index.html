@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>趣味测试</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23263734'/%3E%3Cpath d='M16 4q1 11 12 12-11 1-12 12Q15 17 4 16 15 15 16 4Z' fill='%23FCEAB7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./config_city.js"></script>
+  <script defer src="./config_2027.js"></script>
+  <script defer src="./scoring.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <main id="app" class="shell"></main>
+  <noscript><p class="shell">请开启浏览器的 JavaScript 后再打开测试。</p></noscript>
+
+  <template id="home-view">
+    <section class="home-hero">
+      <p class="eyebrow" data-category></p>
+      <h1 tabindex="-1" data-title></h1>
+      <p class="subtitle" data-subtitle></p>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 340 154" fill="none">
+          <path d="M0 110C67 54 114 148 198 101S272 22 340 52M0 132C65 74 120 170 205 119S280 43 340 74" stroke="currentColor" opacity=".4"/>
+          <path d="M48 0v154M102 0v154M238 0v154M292 0v154M0 34h340M0 119h340" stroke="currentColor" opacity=".15"/>
+          <circle cx="171" cy="77" r="59" stroke="currentColor" opacity=".55" stroke-dasharray="2 5"/>
+          <circle cx="171" cy="77" r="45" stroke="currentColor" opacity=".6"/>
+          <circle cx="171" cy="77" r="28" stroke="currentColor" opacity=".4"/>
+          <path d="M171 22c4 35 20 51 55 55-35 4-51 20-55 55-4-35-20-51-55-55 35-4 51-20 55-55Z" fill="currentColor"/>
+          <circle cx="171" cy="77" r="8" class="art-center"/>
+          <circle cx="86" cy="53" r="4" fill="currentColor"/>
+          <circle cx="276" cy="101" r="5" fill="currentColor"/>
+          <path d="M262 27v18m-9-9h18M72 117v13m-6.5-6.5h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </section>
+    <form class="access-form" novalidate>
+      <label for="access-code">测试口令</label>
+      <input id="access-code" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" placeholder="输入订单消息里的口令" aria-describedby="access-error">
+      <p id="access-error" class="error" aria-live="polite"></p>
+      <button class="button primary" type="submit">开始测试 <span aria-hidden="true">→</span></button>
+    </form>
+    <p class="fine-print" data-disclaimer></p>
+  </template>
+
+  <template id="question-view">
+    <section class="question">
+      <header class="question-header">
+        <p class="eyebrow" data-category></p>
+        <p class="step" data-step></p>
+      </header>
+      <progress class="progress"></progress>
+      <h1 class="prompt" tabindex="-1" data-prompt></h1>
+      <div class="options" data-options></div>
+      <button class="button quiet previous" type="button"><span aria-hidden="true">←</span> 上一题</button>
+    </section>
+  </template>
+
+  <template id="result-view">
+    <section>
+      <header class="result-hero">
+        <div class="result-insignia" aria-hidden="true"></div>
+        <p class="result-label" data-result-label></p>
+        <h1 tabindex="-1" data-name></h1>
+        <p class="result-verdict" data-verdict></p>
+        <ul class="keywords" data-keywords aria-label="关键词"></ul>
+      </header>
+      <div class="result-copy">
+        <section><h2 data-explanation-label></h2><p data-explanation></p></section>
+        <section><h2 data-strength-label></h2><p data-strength></p></section>
+        <section><h2 data-reminder-label></h2><p data-reminder></p></section>
+      </div>
+      <div class="actions">
+        <button class="button primary" type="button" data-generate>生成分享海报 <span aria-hidden="true">↗</span></button>
+        <p class="error" aria-live="polite" data-poster-error></p>
+        <button class="button secondary" type="button" data-retry>再测一次</button>
+      </div>
+      <p class="fine-print" data-disclaimer></p>
+    </section>
+  </template>
+
+  <template id="poster-view">
+    <section class="poster">
+      <h1 tabindex="-1">分享海报</h1>
+      <p class="poster-hint">长按图片或点击按钮保存 PNG</p>
+      <img class="poster-image" width="1080" height="1440" alt="">
+      <div class="actions">
+        <a class="button primary" data-download>下载海报 <span aria-hidden="true">↓</span></a>
+        <button class="button secondary" type="button" data-back>返回结果</button>
+      </div>
+    </section>
+  </template>
+</body>
+</html>
